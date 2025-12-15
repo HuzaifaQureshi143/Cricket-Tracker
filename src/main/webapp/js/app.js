@@ -202,21 +202,39 @@ function updateRecentMatches(matches) {
 
     if (matches.length === 0) {
         container.innerHTML = '';
-        container.appendChild(ui.createEmptyState('No matches recorded yet. Add your first match!', '🏏'));
+        container.appendChild(ui.createEmptyState('No matches recorded yet. Add your first match!', '<i class="fas fa-inbox"></i>'));
         return;
     }
 
-    const html = matches.map(match => `
-        <div class="match-summary">
-            <div class="match-date">${matchService.formatDate(match.matchDate)}</div>
-            <div class="match-opponent">vs ${match.opponent}</div>
-            <div class="match-stats">
-                ${match.runsScored > 0 ? `🏏 ${match.runsScored} runs` : ''}
-                ${match.wicketsTaken > 0 ? `⚾ ${match.wicketsTaken} wickets` : ''}
-                ${match.catches > 0 ? `🧤 ${match.catches} catches` : ''}
+    const stats = [];
+    const html = matches.map(match => {
+        const matchStats = [];
+        if (match.runsScored > 0) {
+            matchStats.push(`<span class="match-stat-item"><i class="fas fa-running"></i> ${match.runsScored} runs</span>`);
+        }
+        if (match.wicketsTaken > 0) {
+            matchStats.push(`<span class="match-stat-item"><i class="fas fa-bullseye"></i> ${match.wicketsTaken} wickets</span>`);
+        }
+        if (match.catches > 0) {
+            matchStats.push(`<span class="match-stat-item"><i class="fas fa-hand-paper"></i> ${match.catches} catches</span>`);
+        }
+
+        return `
+            <div class="match-summary">
+                <div class="match-date">
+                    <i class="fas fa-calendar"></i>
+                    ${matchService.formatDate(match.matchDate)}
+                </div>
+                <div class="match-opponent">
+                    <i class="fas fa-users"></i>
+                    vs ${match.opponent}
+                </div>
+                <div class="match-stats">
+                    ${matchStats.join('')}
+                </div>
             </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 
     container.innerHTML = html;
 }
@@ -315,7 +333,7 @@ function updateHistoryTable(matches) {
         tbody.innerHTML = `
             <tr>
                 <td colspan="9" class="text-center">
-                    ${ui.createEmptyState('No matches found. Start tracking your performance!', '📊').outerHTML}
+                    ${ui.createEmptyState('No matches found. Start tracking your performance!', '<i class="fas fa-chart-line"></i>').outerHTML}
                 </td>
             </tr>
         `;
@@ -333,8 +351,12 @@ function updateHistoryTable(matches) {
             <td>${match.runsConceded || '-'}</td>
             <td>${match.catches || '-'}</td>
             <td class="table-actions">
-                <button class="icon-btn" onclick="window.editMatch('${match.id}')" title="Edit">✏️</button>
-                <button class="icon-btn delete" onclick="window.deleteMatch('${match.id}')" title="Delete">🗑️</button>
+                <button class="icon-btn" onclick="window.editMatch('${match.id}')" title="Edit">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="icon-btn delete" onclick="window.deleteMatch('${match.id}')" title="Delete">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
             </td>
         </tr>
     `).join('');

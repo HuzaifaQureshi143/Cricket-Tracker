@@ -13,6 +13,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -22,15 +25,37 @@
     <nav class="navbar">
         <div class="navbar-content">
             <div class="navbar-brand">
-                <span>🏏</span>
+                <i class="fas fa-cricket"></i>
                 <span>Cricket Tracker</span>
             </div>
-            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
             <ul class="nav-menu">
-                <li><a href="#" class="nav-link active" data-view="dashboard">Dashboard</a></li>
-                <li><a href="#" class="nav-link" data-view="add-match">Add Match</a></li>
-                <li><a href="#" class="nav-link" data-view="history">Match History</a></li>
-                <li><a href="#" class="nav-link" data-view="stats">Statistics</a></li>
+                <li>
+                    <a href="#" class="nav-link active" data-view="dashboard">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link" data-view="add-match">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Match</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link" data-view="history">
+                        <i class="fas fa-history"></i>
+                        <span>Match History</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link" data-view="stats">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Statistics</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -40,49 +65,84 @@
 
         <!-- Dashboard View -->
         <div id="dashboard-view" class="view">
-            <h1>📊 Dashboard</h1>
+            <div class="page-header">
+                <h1>
+                    <i class="fas fa-chart-line"></i>
+                    Dashboard
+                </h1>
+                <p class="page-subtitle">Overview of your cricket performance</p>
+            </div>
 
             <!-- Quick Stats -->
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon">🏏</div>
-                    <div class="stat-label">Total Matches</div>
-                    <div class="stat-value" id="total-matches">0</div>
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-label">Total Matches</div>
+                        <div class="stat-value" id="total-matches">0</div>
+                    </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">🎯</div>
-                    <div class="stat-label">Total Runs</div>
-                    <div class="stat-value" id="total-runs">0</div>
+                    <div class="stat-icon">
+                        <i class="fas fa-baseball-ball"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-label">Total Runs</div>
+                        <div class="stat-value" id="total-runs">0</div>
+                    </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">⚾</div>
-                    <div class="stat-label">Total Wickets</div>
-                    <div class="stat-value" id="total-wickets">0</div>
+                    <div class="stat-icon">
+                        <i class="fas fa-bowling-ball"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-label">Total Wickets</div>
+                        <div class="stat-value" id="total-wickets">0</div>
+                    </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">📈</div>
-                    <div class="stat-label">Batting Average</div>
-                    <div class="stat-value" id="batting-average">0.00</div>
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-area"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-label">Batting Average</div>
+                        <div class="stat-value" id="batting-average">0.00</div>
+                    </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">⚡</div>
-                    <div class="stat-label">Strike Rate</div>
-                    <div class="stat-value" id="strike-rate">0.00</div>
+                    <div class="stat-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-label">Strike Rate</div>
+                        <div class="stat-value" id="strike-rate">0.00</div>
+                    </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">🎳</div>
-                    <div class="stat-label">Bowling Average</div>
-                    <div class="stat-value" id="bowling-average">0.00</div>
+                    <div class="stat-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-label">Bowling Average</div>
+                        <div class="stat-value" id="bowling-average">0.00</div>
+                    </div>
                 </div>
             </div>
 
             <!-- Recent Matches -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Recent Matches</h2>
+                    <h2 class="card-title">
+                        <i class="fas fa-clock"></i>
+                        Recent Matches
+                    </h2>
                     <a href="#" class="btn btn-primary" data-view="add-match"
-                        onclick="event.preventDefault(); document.querySelector('[data-view=add-match]').click();">➕ Add
-                        Match</a>
+                        onclick="event.preventDefault(); document.querySelector('[data-view=add-match]').click();">
+                        <i class="fas fa-plus"></i>
+                        Add Match
+                    </a>
                 </div>
                 <div class="card-body" id="recent-matches">
                     <!-- Recent matches will be loaded here -->
@@ -92,45 +152,78 @@
 
         <!-- Add Match View -->
         <div id="add-match-view" class="view hidden">
-            <h1>➕ Add Match Performance</h1>
+            <div class="page-header">
+                <h1>
+                    <i class="fas fa-plus-circle"></i>
+                    Add Match Performance
+                </h1>
+                <p class="page-subtitle">Record your match statistics</p>
+            </div>
 
             <div class="form-section">
                 <form id="add-match-form">
                     <!-- Basic Info -->
-                    <div class="section-title">📅 Match Details</div>
+                    <div class="section-title">
+                        <i class="fas fa-calendar-alt"></i>
+                        Match Details
+                    </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="matchDate">Match Date *</label>
+                            <label for="matchDate">
+                                <i class="fas fa-calendar"></i>
+                                Match Date *
+                            </label>
                             <input type="date" id="matchDate" name="matchDate" required>
                         </div>
                         <div class="form-group">
-                            <label for="opponent">Opponent *</label>
+                            <label for="opponent">
+                                <i class="fas fa-users"></i>
+                                Opponent *
+                            </label>
                             <input type="text" id="opponent" name="opponent" placeholder="Enter opponent name" required>
                         </div>
                     </div>
 
                     <!-- Batting Performance -->
-                    <div class="section-title">🏏 Batting Performance</div>
+                    <div class="section-title">
+                        <i class="fas fa-baseball-ball"></i>
+                        Batting Performance
+                    </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="runsScored">Runs Scored</label>
+                            <label for="runsScored">
+                                <i class="fas fa-running"></i>
+                                Runs Scored
+                            </label>
                             <input type="number" id="runsScored" name="runsScored" min="0" placeholder="0">
                         </div>
                         <div class="form-group">
-                            <label for="ballsFaced">Balls Faced</label>
+                            <label for="ballsFaced">
+                                <i class="fas fa-circle"></i>
+                                Balls Faced
+                            </label>
                             <input type="number" id="ballsFaced" name="ballsFaced" min="0" placeholder="0">
                         </div>
                     </div>
 
                     <!-- Bowling Performance -->
-                    <div class="section-title">⚾ Bowling Performance</div>
+                    <div class="section-title">
+                        <i class="fas fa-bowling-ball"></i>
+                        Bowling Performance
+                    </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="wicketsTaken">Wickets Taken</label>
+                            <label for="wicketsTaken">
+                                <i class="fas fa-bullseye"></i>
+                                Wickets Taken
+                            </label>
                             <input type="number" id="wicketsTaken" name="wicketsTaken" min="0" max="10" placeholder="0">
                         </div>
                         <div class="form-group">
-                            <label for="oversBowled">Overs Bowled</label>
+                            <label for="oversBowled">
+                                <i class="fas fa-clock"></i>
+                                Overs Bowled
+                            </label>
                             <input type="number" id="oversBowled" name="oversBowled" min="0" step="0.1"
                                 placeholder="0.0">
                             <small class="text-muted">Use decimal format (e.g., 4.5 for 4.5 overs)</small>
@@ -138,19 +231,31 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="runsConceded">Runs Conceded</label>
+                            <label for="runsConceded">
+                                <i class="fas fa-arrow-up"></i>
+                                Runs Conceded
+                            </label>
                             <input type="number" id="runsConceded" name="runsConceded" min="0" placeholder="0">
                         </div>
                         <div class="form-group">
-                            <label for="catches">Catches</label>
+                            <label for="catches">
+                                <i class="fas fa-hand-paper"></i>
+                                Catches
+                            </label>
                             <input type="number" id="catches" name="catches" min="0" placeholder="0">
                         </div>
                     </div>
 
                     <!-- Submit Buttons -->
                     <div class="btn-group">
-                        <button type="submit" class="btn btn-primary">💾 Save Match</button>
-                        <button type="reset" class="btn btn-outline">🔄 Reset Form</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Save Match
+                        </button>
+                        <button type="reset" class="btn btn-outline">
+                            <i class="fas fa-redo"></i>
+                            Reset Form
+                        </button>
                     </div>
                 </form>
             </div>
@@ -158,22 +263,28 @@
 
         <!-- Match History View -->
         <div id="history-view" class="view hidden">
-            <h1>📜 Match History</h1>
+            <div class="page-header">
+                <h1>
+                    <i class="fas fa-history"></i>
+                    Match History
+                </h1>
+                <p class="page-subtitle">View and manage all your matches</p>
+            </div>
 
             <div class="card">
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Opponent</th>
-                                <th>Runs</th>
-                                <th>Balls</th>
-                                <th>Wickets</th>
-                                <th>Overs</th>
-                                <th>Runs Conceded</th>
-                                <th>Catches</th>
-                                <th>Actions</th>
+                                <th><i class="fas fa-calendar"></i> Date</th>
+                                <th><i class="fas fa-users"></i> Opponent</th>
+                                <th><i class="fas fa-running"></i> Runs</th>
+                                <th><i class="fas fa-circle"></i> Balls</th>
+                                <th><i class="fas fa-bullseye"></i> Wickets</th>
+                                <th><i class="fas fa-clock"></i> Overs</th>
+                                <th><i class="fas fa-arrow-up"></i> Runs Conceded</th>
+                                <th><i class="fas fa-hand-paper"></i> Catches</th>
+                                <th><i class="fas fa-cog"></i> Actions</th>
                             </tr>
                         </thead>
                         <tbody id="history-tbody">
@@ -186,19 +297,32 @@
 
         <!-- Detailed Statistics View -->
         <div id="stats-view" class="view hidden">
-            <h1>📊 Detailed Statistics</h1>
+            <div class="page-header">
+                <h1>
+                    <i class="fas fa-chart-bar"></i>
+                    Detailed Statistics
+                </h1>
+                <p class="page-subtitle">Comprehensive performance analysis</p>
+            </div>
 
             <!-- Overall Stats -->
             <div class="card mb-4">
                 <div class="card-header">
-                    <h2 class="card-title">Overall Performance</h2>
+                    <h2 class="card-title">
+                        <i class="fas fa-trophy"></i>
+                        Overall Performance
+                    </h2>
                 </div>
                 <div class="card-body">
                     <div class="stats-grid">
                         <div class="stat-card">
-                            <div class="stat-icon">🏏</div>
-                            <div class="stat-label">Total Matches Played</div>
-                            <div class="stat-value" id="stats-total-matches">0</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-list-ol"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-label">Total Matches Played</div>
+                                <div class="stat-value" id="stats-total-matches">0</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -207,29 +331,48 @@
             <!-- Batting Stats -->
             <div class="card mb-4">
                 <div class="card-header">
-                    <h2 class="card-title">🏏 Batting Statistics</h2>
+                    <h2 class="card-title">
+                        <i class="fas fa-baseball-ball"></i>
+                        Batting Statistics
+                    </h2>
                 </div>
                 <div class="card-body">
                     <div class="stats-grid">
                         <div class="stat-card">
-                            <div class="stat-icon">🎯</div>
-                            <div class="stat-label">Total Runs</div>
-                            <div class="stat-value" id="stats-total-runs">0</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-label">Total Runs</div>
+                                <div class="stat-value" id="stats-total-runs">0</div>
+                            </div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-icon">🏃</div>
-                            <div class="stat-label">Total Balls Faced</div>
-                            <div class="stat-value" id="stats-total-balls">0</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-label">Total Balls Faced</div>
+                                <div class="stat-value" id="stats-total-balls">0</div>
+                            </div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-icon">📈</div>
-                            <div class="stat-label">Batting Average</div>
-                            <div class="stat-value" id="stats-batting-avg">0.00</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-area"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-label">Batting Average</div>
+                                <div class="stat-value" id="stats-batting-avg">0.00</div>
+                            </div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-icon">⚡</div>
-                            <div class="stat-label">Strike Rate</div>
-                            <div class="stat-value" id="stats-strike-rate">0.00</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-label">Strike Rate</div>
+                                <div class="stat-value" id="stats-strike-rate">0.00</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -238,34 +381,57 @@
             <!-- Bowling Stats -->
             <div class="card mb-4">
                 <div class="card-header">
-                    <h2 class="card-title">⚾ Bowling Statistics</h2>
+                    <h2 class="card-title">
+                        <i class="fas fa-bowling-ball"></i>
+                        Bowling Statistics
+                    </h2>
                 </div>
                 <div class="card-body">
                     <div class="stats-grid">
                         <div class="stat-card">
-                            <div class="stat-icon">🎳</div>
-                            <div class="stat-label">Total Wickets</div>
-                            <div class="stat-value" id="stats-total-wickets">0</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-label">Total Wickets</div>
+                                <div class="stat-value" id="stats-total-wickets">0</div>
+                            </div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-icon">⏱️</div>
-                            <div class="stat-label">Total Overs Bowled</div>
-                            <div class="stat-value" id="stats-total-overs">0.0</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-label">Total Overs Bowled</div>
+                                <div class="stat-value" id="stats-total-overs">0.0</div>
+                            </div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-icon">💨</div>
-                            <div class="stat-label">Runs Conceded</div>
-                            <div class="stat-value" id="stats-runs-conceded">0</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-label">Runs Conceded</div>
+                                <div class="stat-value" id="stats-runs-conceded">0</div>
+                            </div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-icon">📉</div>
-                            <div class="stat-label">Bowling Average</div>
-                            <div class="stat-value" id="stats-bowling-avg">0.00</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-label">Bowling Average</div>
+                                <div class="stat-value" id="stats-bowling-avg">0.00</div>
+                            </div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-icon">💹</div>
-                            <div class="stat-label">Economy Rate</div>
-                            <div class="stat-value" id="stats-economy-rate">0.00</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-label">Economy Rate</div>
+                                <div class="stat-value" id="stats-economy-rate">0.00</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -274,14 +440,21 @@
             <!-- Fielding Stats -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">🧤 Fielding Statistics</h2>
+                    <h2 class="card-title">
+                        <i class="fas fa-hand-paper"></i>
+                        Fielding Statistics
+                    </h2>
                 </div>
                 <div class="card-body">
                     <div class="stats-grid">
                         <div class="stat-card">
-                            <div class="stat-icon">🧤</div>
-                            <div class="stat-label">Total Catches</div>
-                            <div class="stat-value" id="stats-total-catches">0</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-hands"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-label">Total Catches</div>
+                                <div class="stat-value" id="stats-total-catches">0</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -294,7 +467,56 @@
     <script type="module" src="./js/app.js"></script>
 
     <style>
-        /* Additional inline styles for match summary */
+        /* Page header styles */
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header h1 i {
+            color: var(--primary);
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        /* Stat card layout update */
+        .stat-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: var(--radius-lg);
+            flex-shrink: 0;
+        }
+
+        .stat-icon i {
+            font-size: 1.75rem;
+            color: white;
+        }
+
+        .stat-content {
+            flex: 1;
+        }
+
+        /* Match summary styles */
         .match-summary {
             background: var(--background);
             border: 1px solid var(--border);
@@ -313,12 +535,26 @@
             color: var(--text-secondary);
             font-size: 0.875rem;
             margin-bottom: var(--spacing-xs);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .match-date i {
+            color: var(--primary);
         }
 
         .match-opponent {
             font-weight: 600;
             font-size: 1.125rem;
             margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .match-opponent i {
+            color: var(--secondary);
         }
 
         .match-stats {
@@ -327,6 +563,56 @@
             display: flex;
             gap: var(--spacing-md);
             flex-wrap: wrap;
+        }
+
+        .match-stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .match-stat-item i {
+            color: var(--primary);
+            font-size: 0.75rem;
+        }
+
+        /* Icon in labels */
+        label i {
+            margin-right: 0.25rem;
+            color: var(--primary);
+            font-size: 0.875rem;
+        }
+
+        /* Section title icons */
+        .section-title i {
+            margin-right: 0.5rem;
+        }
+
+        /* Card title icons */
+        .card-title i {
+            margin-right: 0.5rem;
+        }
+
+        /* Nav link icons */
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link i {
+            font-size: 1rem;
+        }
+
+        /* Button icons */
+        .btn i {
+            font-size: 0.875rem;
+        }
+
+        /* Table header icons */
+        th i {
+            margin-right: 0.25rem;
+            font-size: 0.875rem;
         }
     </style>
 </body>

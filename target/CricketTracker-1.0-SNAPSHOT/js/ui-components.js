@@ -43,14 +43,14 @@ export function showToast(message, type = 'info', duration = 3000) {
 /**
  * Get icon for toast type
  * @param {string} type - Toast type
- * @returns {string} Icon emoji
+ * @returns {string} Icon HTML
  */
 function getToastIcon(type) {
     const icons = {
-        success: '✅',
-        error: '❌',
-        warning: '⚠️',
-        info: 'ℹ️'
+        success: '<i class="fas fa-check-circle"></i>',
+        error: '<i class="fas fa-exclamation-circle"></i>',
+        warning: '<i class="fas fa-exclamation-triangle"></i>',
+        info: '<i class="fas fa-info-circle"></i>'
     };
     return icons[type] || icons.info;
 }
@@ -150,8 +150,8 @@ export function showEditMatchModal(matchData, onSave, onCancel = null) {
     modal.innerHTML = `
         <div class="modal-dialog edit-match-dialog">
             <div class="modal-header">
-                <h3>✏️ Edit Match</h3>
-                <button class="close-btn" id="modal-close-btn">&times;</button>
+                <h3><i class="fas fa-edit"></i> Edit Match</h3>
+                <button class="close-btn" id="modal-close-btn"><i class="fas fa-times"></i></button>
             </div>
             <div class="modal-body">
                 <form id="edit-match-form">
@@ -166,7 +166,7 @@ export function showEditMatchModal(matchData, onSave, onCancel = null) {
                         </div>
                     </div>
                     
-                    <div class="section-title">🏏 Batting Performance</div>
+                    <div class="section-title"><i class="fas fa-baseball-ball"></i> Batting Performance</div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="edit-runsScored">Runs Scored</label>
@@ -178,7 +178,7 @@ export function showEditMatchModal(matchData, onSave, onCancel = null) {
                         </div>
                     </div>
                     
-                    <div class="section-title">⚾ Bowling Performance</div>
+                    <div class="section-title"><i class="fas fa-bowling-ball"></i> Bowling Performance</div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="edit-wicketsTaken">Wickets Taken</label>
@@ -270,14 +270,14 @@ function formatDateForInput(date) {
 /**
  * Create empty state message
  * @param {string} message - Message to display
- * @param {string} icon - Icon emoji
+ * @param {string} iconHtml - Icon HTML
  * @returns {HTMLElement} Empty state element
  */
-export function createEmptyState(message, icon = '📭') {
+export function createEmptyState(message, iconHtml = '<i class="fas fa-inbox"></i>') {
     const emptyState = document.createElement('div');
     emptyState.className = 'empty-state';
     emptyState.innerHTML = `
-        <div class="empty-state-icon">${icon}</div>
+        <div class="empty-state-icon">${iconHtml}</div>
         <p class="empty-state-message">${message}</p>
     `;
     return emptyState;
