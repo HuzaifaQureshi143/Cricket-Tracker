@@ -1,7 +1,7 @@
 package com.crickettracker;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 public class CricketTrackerTest {
 
@@ -9,6 +9,6 @@ public class CricketTrackerTest {
     public void sampleTest() {
         int expected = 5;
         int actual = 2 + 3;
-        assertEquals(expected, actual, "Simple addition test");
+        assertEquals("Sum should be 5", expected, actual);
     }
 }
