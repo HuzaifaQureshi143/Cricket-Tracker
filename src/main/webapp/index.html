@@ -16,6 +16,9 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -127,6 +130,33 @@
                     <div class="stat-content">
                         <div class="stat-label">Bowling Average</div>
                         <div class="stat-value" id="bowling-average">0.00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Charts -->
+            <div class="charts-grid">
+                <div class="card chart-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            Performance Trend
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="performanceTrendChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card chart-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-chart-pie"></i>
+                            Batting vs Bowling
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="battingBowlingChart"></canvas>
                     </div>
                 </div>
             </div>

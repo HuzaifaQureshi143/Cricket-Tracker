@@ -11,6 +11,7 @@ import { db } from './firebase-config.js';
 import * as matchService from './match-service.js';
 import * as validation from './validation.js';
 import * as ui from './ui-components.js';
+import * as charts from './charts.js';
 
 // Application state
 const AppState = {
@@ -171,6 +172,9 @@ async function loadDashboard() {
 
         // Update recent matches section
         updateRecentMatches(recentMatches);
+
+        // Initialize charts
+        charts.initializeCharts(recentMatches, stats);
 
         loading.close();
     } catch (error) {
