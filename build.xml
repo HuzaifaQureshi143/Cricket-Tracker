@@ -1,6 +1,7 @@
 <project name="CricketTracker" default="build">
 
-    <property name="mvn.cmd" value="C:/apache-maven-3.9.9/bin/mvn.cmd"/>
+    <!-- Use your system-level Maven path -->
+    <property name="mvn.cmd" value="C:/maven/bin/mvn.cmd"/>
 
     <target name="clean">
         <exec executable="${mvn.cmd}">
