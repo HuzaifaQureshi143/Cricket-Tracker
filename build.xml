@@ -1,0 +1,30 @@
+<project name="CricketTracker" default="build">
+
+    <property name="mvn.cmd" value="mvn"/>
+
+    <target name="clean">
+        <exec executable="${mvn.cmd}">
+            <arg value="clean"/>
+        </exec>
+    </target>
+
+    <target name="compile">
+        <exec executable="${mvn.cmd}">
+            <arg value="compile"/>
+        </exec>
+    </target>
+
+    <target name="test">
+        <exec executable="${mvn.cmd}">
+            <arg value="test"/>
+        </exec>
+    </target>
+
+    <target name="code-review">
+        <exec executable="${mvn.cmd}">
+            <arg value="verify"/>
+        </exec>
+    </target>
+
+    <target name="build" depends="clean,compile,test,code-review"/>
+</project>
