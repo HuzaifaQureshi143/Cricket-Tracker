@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Tracker - Track Your Cricket Performance</title>
+    <meta name="description"
+        content="Track your cricket performance with detailed statistics, match history, and performance analysis">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-brand">
+                <span>🏏</span>
+                <span>Cricket Tracker</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" data-view="dashboard">Dashboard</a></li>
+                <li><a href="#" class="nav-link" data-view="add-match">Add Match</a></li>
+                <li><a href="#" class="nav-link" data-view="history">Match History</a></li>
+                <li><a href="#" class="nav-link" data-view="stats">Statistics</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Dashboard View -->
+        <div id="dashboard-view" class="view">
+            <h1>📊 Dashboard</h1>
+
+            <!-- Quick Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🏏</div>
+                    <div class="stat-label">Total Matches</div>
+                    <div class="stat-value" id="total-matches">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-label">Total Runs</div>
+                    <div class="stat-value" id="total-runs">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚾</div>
+                    <div class="stat-label">Total Wickets</div>
+                    <div class="stat-value" id="total-wickets">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-label">Batting Average</div>
+                    <div class="stat-value" id="batting-average">0.00</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-label">Strike Rate</div>
+                    <div class="stat-value" id="strike-rate">0.00</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎳</div>
+                    <div class="stat-label">Bowling Average</div>
+                    <div class="stat-value" id="bowling-average">0.00</div>
+                </div>
+            </div>
+
+            <!-- Recent Matches -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Recent Matches</h2>
+                    <a href="#" class="btn btn-primary" data-view="add-match"
+                        onclick="event.preventDefault(); document.querySelector('[data-view=add-match]').click();">➕ Add
+                        Match</a>
+                </div>
+                <div class="card-body" id="recent-matches">
+                    <!-- Recent matches will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Match View -->
+        <div id="add-match-view" class="view hidden">
+            <h1>➕ Add Match Performance</h1>
+
+            <div class="form-section">
+                <form id="add-match-form">
+                    <!-- Basic Info -->
+                    <div class="section-title">📅 Match Details</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="matchDate">Match Date *</label>
+                            <input type="date" id="matchDate" name="matchDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="opponent">Opponent *</label>
+                            <input type="text" id="opponent" name="opponent" placeholder="Enter opponent name" required>
+                        </div>
+                    </div>
+
+                    <!-- Batting Performance -->
+                    <div class="section-title">🏏 Batting Performance</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="runsScored">Runs Scored</label>
+                            <input type="number" id="runsScored" name="runsScored" min="0" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="ballsFaced">Balls Faced</label>
+                            <input type="number" id="ballsFaced" name="ballsFaced" min="0" placeholder="0">
+                        </div>
+                    </div>
+
+                    <!-- Bowling Performance -->
+                    <div class="section-title">⚾ Bowling Performance</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="wicketsTaken">Wickets Taken</label>
+                            <input type="number" id="wicketsTaken" name="wicketsTaken" min="0" max="10" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="oversBowled">Overs Bowled</label>
+                            <input type="number" id="oversBowled" name="oversBowled" min="0" step="0.1"
+                                placeholder="0.0">
+                            <small class="text-muted">Use decimal format (e.g., 4.5 for 4.5 overs)</small>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="runsConceded">Runs Conceded</label>
+                            <input type="number" id="runsConceded" name="runsConceded" min="0" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="catches">Catches</label>
+                            <input type="number" id="catches" name="catches" min="0" placeholder="0">
+                        </div>
+                    </div>
+
+                    <!-- Submit Buttons -->
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary">💾 Save Match</button>
+                        <button type="reset" class="btn btn-outline">🔄 Reset Form</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Match History View -->
+        <div id="history-view" class="view hidden">
+            <h1>📜 Match History</h1>
+
+            <div class="card">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Opponent</th>
+                                <th>Runs</th>
+                                <th>Balls</th>
+                                <th>Wickets</th>
+                                <th>Overs</th>
+                                <th>Runs Conceded</th>
+                                <th>Catches</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-tbody">
+                            <!-- Match history will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Statistics View -->
+        <div id="stats-view" class="view hidden">
+            <h1>📊 Detailed Statistics</h1>
+
+            <!-- Overall Stats -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h2 class="card-title">Overall Performance</h2>
+                </div>
+                <div class="card-body">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">🏏</div>
+                            <div class="stat-label">Total Matches Played</div>
+                            <div class="stat-value" id="stats-total-matches">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Batting Stats -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h2 class="card-title">🏏 Batting Statistics</h2>
+                </div>
+                <div class="card-body">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">🎯</div>
+                            <div class="stat-label">Total Runs</div>
+                            <div class="stat-value" id="stats-total-runs">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🏃</div>
+                            <div class="stat-label">Total Balls Faced</div>
+                            <div class="stat-value" id="stats-total-balls">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📈</div>
+                            <div class="stat-label">Batting Average</div>
+                            <div class="stat-value" id="stats-batting-avg">0.00</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⚡</div>
+                            <div class="stat-label">Strike Rate</div>
+                            <div class="stat-value" id="stats-strike-rate">0.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bowling Stats -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h2 class="card-title">⚾ Bowling Statistics</h2>
+                </div>
+                <div class="card-body">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">🎳</div>
+                            <div class="stat-label">Total Wickets</div>
+                            <div class="stat-value" id="stats-total-wickets">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⏱️</div>
+                            <div class="stat-label">Total Overs Bowled</div>
+                            <div class="stat-value" id="stats-total-overs">0.0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💨</div>
+                            <div class="stat-label">Runs Conceded</div>
+                            <div class="stat-value" id="stats-runs-conceded">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📉</div>
+                            <div class="stat-label">Bowling Average</div>
+                            <div class="stat-value" id="stats-bowling-avg">0.00</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💹</div>
+                            <div class="stat-label">Economy Rate</div>
+                            <div class="stat-value" id="stats-economy-rate">0.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fielding Stats -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">🧤 Fielding Statistics</h2>
+                </div>
+                <div class="card-body">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">🧤</div>
+                            <div class="stat-label">Total Catches</div>
+                            <div class="stat-value" id="stats-total-catches">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Firebase SDK & App Scripts -->
+    <script type="module" src="./js/app.js"></script>
+
+    <style>
+        /* Additional inline styles for match summary */
+        .match-summary {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            transition: all var(--transition-fast);
+        }
+
+        .match-summary:hover {
+            background: var(--surface-hover);
+            transform: translateX(4px);
+        }
+
+        .match-date {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .match-opponent {
+            font-weight: 600;
+            font-size: 1.125rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .match-stats {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+    </style>
+</body>
+
+</html>
