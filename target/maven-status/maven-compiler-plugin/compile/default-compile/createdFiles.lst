@@ -1,2 +1,4 @@
 com\crickettracker\crickettracker\JakartaRestConfiguration.class
+com\crickettracker\crickettracker\controller\MatchController.class
 com\crickettracker\crickettracker\resources\JakartaEE10Resource.class
+com\crickettracker\crickettracker\model\Match.class
