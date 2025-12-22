@@ -8,55 +8,78 @@
  */
 
 // Chart instances
-let performanceTrendChart = null;
-let battingBowlingChart = null;
+const charts = {
+    dashboard: {
+        trend: null,
+        distribution: null
+    },
+    stats: {
+        trend: null,
+        distribution: null
+    }
+};
 
 /**
- * Initialize all charts
+ * Initialize dashboard charts
  * @param {Array} matches - Match history data
  * @param {Object} stats - Player statistics
  */
-export function initializeCharts(matches, stats) {
-    createPerformanceTrendChart(matches);
-    createBattingBowlingChart(stats);
+export function initializeDashboardCharts(matches, stats) {
+    charts.dashboard.trend = createPerformanceTrendChart(matches, 'performanceTrendChart', charts.dashboard.trend, 10);
+    charts.dashboard.distribution = createBattingBowlingChart(stats, 'battingBowlingChart', charts.dashboard.distribution);
+}
+
+/**
+ * Initialize stats page charts
+ * @param {Array} matches - Match history data
+ * @param {Object} stats - Player statistics
+ */
+export function initializeStatsCharts(matches, stats) {
+    charts.stats.trend = createPerformanceTrendChart(matches, 'statsPerformanceTrendChart', charts.stats.trend, 20);
+    charts.stats.distribution = createBattingBowlingChart(stats, 'statsBattingBowlingChart', charts.stats.distribution);
 }
 
 /**
  * Create performance trend chart (line chart showing runs and wickets over time)
  * @param {Array} matches - Match history data
+ * @param {string} canvasId - DOM ID of the canvas element
+ * @param {Object} existingChart - Existing Chart instance to destroy
+ * @param {number} limit - Number of matches to show
+ * @returns {Object|null} New Chart instance or null
  */
-function createPerformanceTrendChart(matches) {
-    const canvas = document.getElementById('performanceTrendChart');
-    if (!canvas) return;
+function createPerformanceTrendChart(matches, canvasId, existingChart, limit = 10) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return null;
 
     const ctx = canvas.getContext('2d');
 
     // Destroy existing chart if it exists
-    if (performanceTrendChart) {
-        performanceTrendChart.destroy();
+    if (existingChart) {
+        existingChart.destroy();
     }
 
-    // Prepare data (last 10 matches)
-    const recentMatches = matches.slice(0, 10).reverse();
+    // Prepare data
+    // Matches are assumed to be sorted Newest -> Oldest by service
+    const matchesToDisplay = matches.slice(0, limit).reverse();
 
-    if (recentMatches.length === 0) {
+    if (matchesToDisplay.length === 0) {
         // Show empty state
         ctx.font = '16px Inter';
         ctx.fillStyle = '#6b7280';
         ctx.textAlign = 'center';
         ctx.fillText('No match data available', canvas.width / 2, canvas.height / 2);
-        return;
+        return null;
     }
 
-    const labels = recentMatches.map((match, index) => {
+    const labels = matchesToDisplay.map((match, index) => {
         const date = new Date(match.matchDate);
         return `${date.getDate()}/${date.getMonth() + 1}`;
     });
 
-    const runsData = recentMatches.map(match => match.runsScored || 0);
-    const wicketsData = recentMatches.map(match => match.wicketsTaken || 0);
+    const runsData = matchesToDisplay.map(match => match.runsScored || 0);
+    const wicketsData = matchesToDisplay.map(match => match.wicketsTaken || 0);
 
-    performanceTrendChart = new Chart(ctx, {
+    return new Chart(ctx, {
         type: 'line',
         data: {
             labels: labels,
@@ -120,7 +143,7 @@ function createPerformanceTrendChart(matches) {
                     callbacks: {
                         title: function (context) {
                             const index = context[0].dataIndex;
-                            const match = recentMatches[index];
+                            const match = matchesToDisplay[index];
                             return `vs ${match.opponent}`;
                         }
                     }
@@ -158,16 +181,19 @@ function createPerformanceTrendChart(matches) {
 /**
  * Create batting vs bowling comparison chart (doughnut chart)
  * @param {Object} stats - Player statistics
+ * @param {string} canvasId - DOM ID of the canvas element
+ * @param {Object} existingChart - Existing Chart instance to destroy
+ * @returns {Object|null} New Chart instance or null
  */
-function createBattingBowlingChart(stats) {
-    const canvas = document.getElementById('battingBowlingChart');
-    if (!canvas) return;
+function createBattingBowlingChart(stats, canvasId, existingChart) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return null;
 
     const ctx = canvas.getContext('2d');
 
     // Destroy existing chart if it exists
-    if (battingBowlingChart) {
-        battingBowlingChart.destroy();
+    if (existingChart) {
+        existingChart.destroy();
     }
 
     const totalRuns = stats.totalRuns || 0;
@@ -180,10 +206,10 @@ function createBattingBowlingChart(stats) {
         ctx.fillStyle = '#6b7280';
         ctx.textAlign = 'center';
         ctx.fillText('No statistics available', canvas.width / 2, canvas.height / 2);
-        return;
+        return null;
     }
 
-    battingBowlingChart = new Chart(ctx, {
+    return new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: ['Runs Scored', 'Wickets Taken', 'Catches'],
@@ -245,27 +271,20 @@ function createBattingBowlingChart(stats) {
         }
     });
 }
-
-/**
- * Update charts with new data
- * @param {Array} matches - Match history data
- * @param {Object} stats - Player statistics
- */
-export function updateCharts(matches, stats) {
-    createPerformanceTrendChart(matches);
-    createBattingBowlingChart(stats);
-}
-
 /**
  * Destroy all charts (cleanup)
  */
 export function destroyCharts() {
-    if (performanceTrendChart) {
-        performanceTrendChart.destroy();
-        performanceTrendChart = null;
-    }
-    if (battingBowlingChart) {
-        battingBowlingChart.destroy();
-        battingBowlingChart = null;
-    }
+    Object.values(charts.dashboard).forEach(chart => {
+        if (chart) chart.destroy();
+    });
+    
+    Object.values(charts.stats).forEach(chart => {
+        if (chart) chart.destroy();
+    });
+    
+    charts.dashboard.trend = null;
+    charts.dashboard.distribution = null;
+    charts.stats.trend = null;
+    charts.stats.distribution = null;
 }

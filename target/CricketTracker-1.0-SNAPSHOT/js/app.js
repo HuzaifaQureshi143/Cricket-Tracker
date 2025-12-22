@@ -174,7 +174,7 @@ async function loadDashboard() {
         updateRecentMatches(recentMatches);
 
         // Initialize charts
-        charts.initializeCharts(recentMatches, stats);
+        charts.initializeDashboardCharts(recentMatches, stats);
 
         loading.close();
     } catch (error) {
@@ -459,6 +459,10 @@ async function loadStats() {
         AppState.stats = stats;
 
         updateDetailedStats(stats);
+
+        // Load matches for charts
+        const matches = await matchService.getAllMatches();
+        charts.initializeStatsCharts(matches, stats);
         loading.close();
     } catch (error) {
         loading.close();

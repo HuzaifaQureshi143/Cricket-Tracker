@@ -38,7 +38,7 @@
                 <li>
                     <a href="#" class="nav-link active" data-view="dashboard">
                         <i class="fas fa-chart-line"></i>
-                        <span>Dashboard</span>
+                        <span>LeaderBoard</span>
                     </a>
                 </li>
                 <li>
@@ -463,6 +463,33 @@
                                 <div class="stat-value" id="stats-economy-rate">0.00</div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Graphs -->
+            <div class="charts-grid mb-4">
+                <div class="card chart-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            Performance Trend
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="statsPerformanceTrendChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card chart-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-chart-pie"></i>
+                            Batting vs Bowling
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="statsBattingBowlingChart"></canvas>
                     </div>
                 </div>
             </div>
